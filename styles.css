@@ -1,0 +1,227 @@
+         header   { background-color: darkBlue;
+                    text-align: center;
+                    font-family: arial, helvetica, sans-serif;
+                    padding: .2em; 
+		    box-shadow: 10px 10px 10px dimgrey;}
+	body
+	{
+	    background-image: url("prime_number.png");	    
+	}
+
+	
+	.sidenav {
+            width: 10%;
+            height: 90%;
+            display: -webkit-box;
+            display: block;
+			padding: 0px 50px 0px 0px;
+			float:left;
+	}
+	
+	.sidenav > div 
+         {
+            text-align: left;
+			color: white;
+			background-color:darkblue;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            width:100%;
+            margin: 10px 10px 10px 0px;
+            padding: 10px 15px 25px 15px
+            
+         }
+
+
+/* Side navigation links */
+	.sidenav a {
+	  color: White;
+	  font-size: 20px;
+	  padding: 16px;
+	  text-decoration: none;
+	  display: block;
+	}
+
+/* Change color on hover */
+	.sidenav a:hover {
+	  background-color: darkgrey;
+	  color: black;
+	  border: 2px solid black;
+	}
+
+
+/*Flexbox style */
+	.flexbox {
+            width: 100%;
+	}
+	
+	.flexbox > div 
+         {
+           
+	    color: white;
+   	    background-color:darkblue;
+	    display: inline-block;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            width:10%;
+            
+            
+            
+         }
+
+
+/* Side navigation links */
+	.flexbox a {
+	  color: White;
+	  padding: 16px;
+	  text-decoration: none;
+	  display: block;
+	}
+
+/* Change color on hover */
+	.flexbox a:hover {
+	  background-color: darkgrey;
+	  color: black;
+	  -webkit-border-radius: 10px;
+          border-radius: 10px;
+	  border: 2px solid black;
+	}
+
+
+
+
+
+        
+
+/*Blog_box is for displaying the blogs */
+	.blog_box 
+         {         
+             
+            display: -webkit-box;
+            display: box;
+			margin: auto;
+	    
+    }
+
+         .blog_box > div 
+         {
+            text-align: left;
+            min-width: 50%;
+			color: black;
+			background-color:lightgray;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            margin: 10px 10px 10px 0px;
+            padding: 10px 15px 25px 15px
+            
+         }
+
+	.blog_box > div > h1
+	 {
+	    text-align :center;
+	 }
+
+	.blog_box > div > p
+	 {
+	    line-height: 200%;
+	    font-size: 20px;
+	 }
+	 
+
+/*Body_box is for displaying the insert form*/ 		
+	.body_box 
+         {
+
+            width: 500px;
+            height: 1000px;
+            display: -webkit-box;
+            display: box;
+	    margin-left: auto;
+	    margin-right: auto;
+	    
+         }
+
+         .body_box > div 
+         {
+            text-align: left;
+	    font-size: 20px;
+	    line-height: 200%;
+	    color: black;
+	    background-color:lightgray;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            width: 500px;
+            margin: 10px 10px 10px 0px;
+            padding: 10px 15px 25px 15px
+            
+         }
+
+
+/*Form-box is for displaying all other forms*/
+	 .form_box 
+         {
+   	    align: center;
+            width: 500px;
+            height: 300px;
+            display: -webkit-box;
+            display: box;
+	    margin-left: auto;
+	    margin-right: auto;
+	    
+         }
+
+         .form_box > div 
+         {
+            text-align: left;
+	    font-size: 20px;
+	    line-height: 200%;
+	    color: black;
+	    background-color:lightgray;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            width: 500px;
+            margin: 10px 10px 10px 0px;
+            padding: 10px 15px 25px 15px
+            
+         }
+         
+         
+/*post_box is for displaying the blogs */
+	.post_box 
+         {         
+             
+            display: -webkit-box;
+            display: block;
+			margin: auto;
+	    
+    }
+
+         .post_box > div 
+         {
+            text-align: left;
+            min-width: 50%;
+			color: black;
+			background-color:lightgray;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            border: 2px solid black;
+            margin: 10px 10px 10px 0px;
+            padding: 10px 15px 25px 15px
+            
+         }
+
+	.post_box > div > h1
+	 {
+	    text-align :center;
+	 }
+
+	.post_box > div > p
+	 {
+	    line-height: 200%;
+	    font-size: 20px;
+	 }
+	 

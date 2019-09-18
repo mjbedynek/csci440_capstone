@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>William Young</title> 
+    <link rel="stylesheet" href="styles.css">        
+  </head>
+  
+  <body>
+    <header><img src = "tamuc-logo.png" alt = "TAMUC" /> 
+
+	<div class = "flexbox">
+	    
+	 <div><a href = "https://william-young.000webhostapp.com">Home</a></div>
+	 
+	<div><a href = "https://william-young.000webhostapp.com/blog_posts.php">All Posts</a></div>
+	
+	<div><a href = "https://william-young.000webhostapp.com/insert_form.html">New Post</a></div>
+	
+	<div><a href = "https://william-young.000webhostapp.com/delete_form.html">Delete Post</a></div>
+	
+	<div><a href = "https://william-young.000webhostapp.com/about.html">About</a></div>
+	
+	</div>	
+     </header>
+	
+
+
+	<div class = "blog_box">
+	<div><h1>About the Authors</h1>
+	<?php
+
+		$conn = new mysqli("localhost","id7820654_willyoung18","/*Password*/","id7820654_blog_posts");
+
+		if (!$conn) {
+			echo "Error: Unable to connect to MySQL." . PHP_EOL;
+			echo "Debugging errno: " . $conn->connect_errno() . PHP_EOL;
+			echo "Debugging error: " . $conn->connect_error() . PHP_EOL;
+			exit;
+		}	
+
+	$sql = "SELECT * FROM people ";
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+	    // output data of each row
+	    while($row = $result->fetch_assoc()) {
+	        echo "<div><h1>" . $row["author"]. "</h1> ".
+				"<p>". $row["abstract"]."</p><br>".
+				"<em>Position: ".$row["position"]."</em><br>".
+				"Phone: ".$row["phone"]."</div>";
+	    }
+	} else {
+	    echo "0 results";
+	}
+	$conn->close();
+?>
+		</div>
+		</div>
+  </body>
+</html>
