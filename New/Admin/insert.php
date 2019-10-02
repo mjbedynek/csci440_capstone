@@ -36,7 +36,7 @@
 
   ?>
 
-  <script type = "text/javascript" > location.href = 'http://no-carrier.org/blog_posts.php'; </script>
+  <script type = "text/javascript" > location.href = 'http://no-carrier.org/all_posts.php'; </script>
 
 </body>
 </html>

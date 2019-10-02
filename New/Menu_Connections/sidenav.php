@@ -8,7 +8,7 @@
 	  if ($result->num_rows > 0) {
 	    // output data of each row
 	    while($row = $result->fetch_assoc()) {
-	      echo '<a href="https://william-young.000webhostapp.com/retrieve.php?select='
+	      echo '<a href="http://no-carrier.org/retrieve.php?select='
 		.$row["Title"].'">'
 		.$row["Title"].'</a> ';
 	    }

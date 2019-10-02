@@ -17,7 +17,10 @@
     </header>
 
     <div class = "post_box">
-      <?php include 'all_box.php';?>
+      <?php 
+	include 'connect_query.php';
+	include 'all_box.php';
+      ?>
    </div>
    </body>
 </html>

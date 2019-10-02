@@ -20,9 +20,23 @@
 
     <div class= "form_box">
     <div><form method = "post" action = "delete.php">
-	  Enter a title of a post to delete:
-	  <input type = "text" name = "select"><br>
-	  <input type = "submit" value = "Delete">
+          Select a post to delete: <br>
+<?php
+	  include "connect_query.php";
+
+	  $sql = 'SELECT Title FROM posts';
+	  $result = connect_query($sql);
+	  
+	  if ($result->num_rows > 0) {
+	    while($row = $result->fetch_assoc()) {
+	      echo '<input type = "radio" name = "select" value="'.$row["Title"].'"><br>';
+	    }
+	  } else {
+	      echo "0 results";
+	    }
+?>
+
+	   <input type = "submit" value = "Delete">
 	  </form>
     </div></div>
    </body>
