@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>About the Authors</title> 
+    <link rel="stylesheet" href="styles.css">        
+  </head>
+  
+  <body>
+    <header><img src = "tamuc-logo.png" alt = "TAMUC" /> 
+
+      <div class = "flexbox">
+        <?php include 'menu.php';?>    
+      </div>	
+    </header>
+	
+      <div class="sidenav">
+      <div>
+	<?php include "sidenav.php";?>
+      </div></div>
+
+      <div class = "blog_box">
+      <div><h1>About the Authors</h1>
+	 <?php 
+	 //include "connect_query.php";
+
+	  // Prepare and run the query.
+	  $sql = "SELECT * FROM people ";
+	  $result = connect_query($sql);
+
+	  if ($result->num_rows > 0) {
+	      // output data of each row
+	      while($row = $result->fetch_assoc()) {
+	        echo "<div><h1>" . $row["author"]. "</h1> ".
+		      "<p>". $row["abstract"]."</p><br>".
+		      "<em>Position: ".$row["position"]."</em><br>".
+		      "Phone: ".$row["phone"]."</div>";
+		}
+	    } else {
+		echo "0 results";
+	      }
+?>
+		</div>
+		</div>
+  </body>
+</html>

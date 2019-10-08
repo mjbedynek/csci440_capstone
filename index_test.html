@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<hmtl>
+  <head>
+    <meta charset = "utf-8">
+    <title>index_test</title>
+  </head>
+
+  <body>
+    <?
+
+      include "config_test.php";
+      
+      // Create connection
+      $conn = mysqli_connect($DB['NAME'], $DB['USER'], $DB['PASS']);
+
+      // Test connection
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
+      echo "Connected sucessfully";
+      
+      $sql = 'SELECT * FROM posts ORDER BY postsid DESC LIMIT 1';
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+	// output data of each row
+        while($row = $result->fetch_assoc()) {
+          echo "<h1>" . $row["Title"]. "</h1> ".
+	  "<p>". $row["Body"]."</p><br>".
+	  "<em>By: ".$row["author"]."</em><br>".
+	  "Posted: ".$row["post_date"];
+	}
+      } else {
+        echo "0 results";
+        }
+      $conn->close();
+
+    ?>
+  </body>
+</html>

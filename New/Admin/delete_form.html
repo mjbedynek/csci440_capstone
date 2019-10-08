@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<title>Delete Post</title>
+
+
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>Insert Form</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  
+  <body>
+    <header><img src = "tamuc-logo.png" alt = "TAMUC" /> 
+
+	<div class = "flexbox">
+	  <?php include 'admin_menu.php';?>	
+	</div>	
+     </header>
+
+    <div class= "form_box">
+    <div><form method = "post" action = "delete.php">
+          Select a post to delete: <br>
+<?php
+	  include "connect_query.php";
+
+	  $sql = 'SELECT Title FROM posts';
+	  $result = connect_query($sql);
+	  
+	  if ($result->num_rows > 0) {
+	    while($row = $result->fetch_assoc()) {
+	      echo '<input type = "radio" name = "select" value="'.$row["Title"].'"><br>';
+	    }
+	  } else {
+	      echo "0 results";
+	    }
+?>
+
+	   <input type = "submit" value = "Delete">
+	  </form>
+    </div></div>
+   </body>
+</html>
+

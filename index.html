@@ -57,7 +57,7 @@
 	<div><h1>Most Recent Posts</h1>
 	<?php
 
-		$conn = new mysqli("localhost","id7820654_willyoung18","/*Password*/","id7820654_blog_posts");
+	     $conn = new mysqli($DB['HOST'], $DB['USER'], $DB['PASS'], $DB['NAME']);
 
 		if (!$conn) {
 			echo "Error: Unable to connect to MySQL." . PHP_EOL;
