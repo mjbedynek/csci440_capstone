@@ -58,5 +58,6 @@ Ran this command:
 	ALTER TABLE posts CHANGE COLUMN `author` `authorid` int(10) unsigned NOT NULL;
 	ALTER TABLE posts DROP COLUMN `post_comment`;
 	ALTER TABLE posts ADD FOREIGN KEY (`authorid`) REFERENCES users(`id`);
+	DROP TABLE people;
 
 Added comments and users tables.
