@@ -1,7 +1,7 @@
 DROP TABLE posts;
 CREATE TABLE `posts`
 (	
-//	`postid`	   	int(10) unsigned AUTO_INCREMENT,
+//	`postsid`	   	int(10) unsigned AUTO_INCREMENT,
 	`id`		   	int(10) unsigned AUTO_INCREMENT,
 	`title`			char(30),
 	`body`			blob,
@@ -42,6 +42,8 @@ CREATE TABLE `comments`
 	`title`			char(30),
 	`date`			date,
 	`body`			blob NOT NULL,
+	`approved`		boolean NOT NULL DEFAULT false,
+	`hidden`		boolean NOT NULL DEFAULT false,
 	`userid`		int(10) unsigned NOT NULL,
 	`postid`		int(10) unsigned NOT NULL,
 	PRIMARY KEY		(`id`),
