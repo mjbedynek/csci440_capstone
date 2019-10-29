@@ -29,6 +29,7 @@ CREATE TABLE `users`
 	`isadmin`		boolean NOT NULL DEFAULT false,
 	`lastlogin`		datetime,
 	PRIMARY KEY		(`id`),
+	UNIQUE KEY		(`username`),
 	UNIQUE KEY		(`email`)
 )
 
