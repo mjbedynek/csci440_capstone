@@ -107,7 +107,7 @@
          .blog_box > div 
          {
             text-align: left;
-            min-width: 50%;
+            min-width: 90%;
 			color: black;
 			background-color:lightgray;
             -webkit-border-radius: 10px;
@@ -224,4 +224,32 @@
 	    line-height: 200%;
 	    font-size: 20px;
 	 }
-	 
+
+/* Added horizontal line for formatting. */
+	hr {
+    		display: block;
+    		height: 1px;
+    		border: 0;
+    		border-top: 1px solid #ccc;
+    		margin: 1em 0;
+    		padding: 0;
+}
+
+/*Redesign css*/
+.sidenav a:hover {
+    transition: 0.5s;
+}
+
+.sidenav a {
+    border: 1px solid #ffffff26;
+    margin-top: 12px;
+    padding: 10px 16px;
+    text-transform: capitalize;
+}
+
+.flexbox a:hover {
+    transition: .5s;
+        border: 0px solid black;
+}
+
+
