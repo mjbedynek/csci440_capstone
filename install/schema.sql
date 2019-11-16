@@ -4,21 +4,12 @@ CREATE TABLE `posts`
 	`id`		   	int(10) unsigned AUTO_INCREMENT,
 	`title`			char(30),
 	`body`			blob,
-	`postdatetime`		datetime,
+	`postdatetime`		datetime DEFAULT CURRENT_TIMESTAMP,
 	`authorid`		int(10) unsigned NOT NULL
 	PRIMARY KEY		(`id`),
 	FOREIGN KEY 		(`authorid`)
 		REFERENCES users(`id`),
 );
-
-/* The people table will go away */
-//DROP TABLE people;
-//CREATE TABLE `people`
-//(	`authorid`		INT PRIMARY KEY AUTO_INCREMENT,
-//	`author`		char(30) NOT NULL,
-//	`position`		char(30) NOT NULL,
-//	`phone`			int NOT NULL
-//)
 
 DROP TABLE `users`;
 CREATE TABLE `users`
@@ -62,3 +53,7 @@ Ran this command:
 	DROP TABLE people;
 
 Added comments and users tables.
+
+/* changes to database on 11/15/2019 */
+Ran this command:
+	ALTER TABLE posts MODIFY postdatetime datetime DEFAULT CURRENT_TIMESTAMP;
