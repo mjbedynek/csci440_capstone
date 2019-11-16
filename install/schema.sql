@@ -16,6 +16,7 @@ CREATE TABLE `users`
 (	`id`			int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`username`		char(30) NOT NULL,
 	`password`		char(30) NOT NULL,
+	`displayname`		char(30) NOT NULL,
 	`email`			char(30) NOT NULL,
 	`isadmin`		boolean NOT NULL DEFAULT false,
 	`lastlogin`		datetime,
@@ -57,3 +58,4 @@ Added comments and users tables.
 /* changes to database on 11/15/2019 */
 Ran this command:
 	ALTER TABLE posts MODIFY postdatetime datetime DEFAULT CURRENT_TIMESTAMP;
+	ALTER TABLE users ADD `displayname` char(30) NOT NULL AFTER id;
