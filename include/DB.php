@@ -1,8 +1,6 @@
 <?php
 
-//require_once "include/config.php";
-
-class DB {
+class Database {
 	private $pdo;
 	private $DB = array(
 		'HOST' => 'localhost',
