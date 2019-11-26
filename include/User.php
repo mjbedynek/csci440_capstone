@@ -2,7 +2,7 @@
 
 require_once "DB.php";
 
-class Login {
+class User {
 
 	// Instance variables
 	private $dbh;
