@@ -1,42 +1,84 @@
+<?php
+
+session_start();
+
+require_once "include/DB.php";
+require_once "include/html_includes.php";
+
+$head = '
 <html>
-  <title>Inserted Post</title>
-<body>
+   <head>
+      <meta charset = "utf-8">
+      <title>Insert Form</title>
+      <link rel="stylesheet" href="styles.css">
+      <link rel="stylesheet" href="restyle.css">
+   </head>';
 
-  <?php
+// Prevent unauthorized users from making posts ;-)
+if ( isset ( $_SESSION['username'] ) ) {
+   // Store form data in usable variables
+   $action = isset($_POST[ "action" ]) ? $_POST [ "action" ] : "";
+   $title = isset($_POST[ "title" ]) ? $_POST [ "title" ] : "";
+   $body = isset($_POST[ "body" ]) ? $_POST [ "body" ] : "";
 
-  include "connect_query.php";
+   switch($action) {
+      case "add":
+         // check to see if all the data is there
+         if (!$title || !$body) {
+         $body = '<body>
+                  You have not entered all the required details.<br>
+                  Please go back and try again.";
+                  <p><a href = "insert_form.php">Go Back</a></p>';
+                  exit;
+         }
 
-  // get the data from the form and assign the data to variables
-  $title = $_POST['Title'];
-  $body = $_POST['Body'];
+         // add slashes and prepare the data for inserting into the db
+         $title = addslashes($title);
+         $body = addslashes($body);
 
-  // check to see if all the data is there
-  if (!$title || !$body)
-  {
-    echo "You have not entered all the required details.<br>"
-		."Please go back and try again.";
-    echo '<p><a href = "http://no-carrier.org/insert_form.php">Go Back</a></p>';
-    exit;
-  }
+         // Open connection to DB
+         $db = new Database();
 
-  // add slashes and prepare the data for inserting into the db
-  $title = addslashes($title);
-  $body = addslashes($body);
+         // Get Author from PHP session data
+         $authorid = isset($_SESSION[ "id" ]) ? $_SESSION [ "id" ] : "";
 
-  // INSERT INTO posts (authorid, body, title) VALUES (1, "testing a msg", "routine test")
-  
-  // set to admin for now - change later
-  $authorid = 1;
+         // Setup query
+         $params = [
+                     'authorid'  => $authorid,
+                     'title'     => $title,
+                     'body'      => $body,
+                   ];
+         $sql = "INSERT INTO posts (authorid, body, title) VALUES (:authorid, :title, :body)";
+         // Insert into DB
+         $db->insert($sql, $params);
 
-  // prepare the query
-  $sql = "insert into posts (authorid, title, body) VALUES (1,"
-            ."'".$title."','".$body."')";
-  // Connect to the database and run query.
-  connect_query($sql);
+         // Forward to main page?
+         $body .= '<script type = "text/javascript" > location.href = \'all_posts.php\'; </script>';
 
-  ?>
-
-  <script type = "text/javascript" > location.href = 'http://no-carrier.org/all_posts.php'; </script>
+         break;
+      default:
+         $body = '
+            <header><img src = "tamuc-logo.png" alt = "TAMUC" />
+            <div class = "flexbox">'.$admin_menu.'</div></header>';
+         $body .= '
+            <div class="insert-form">
+               <div class = "insert_box_wrapper">
+                  <form action="insert.php?action=add" method = "post">
+                     <input type="hidden" name="action" value="add" />
+                     <label for="fname">Title</label>
+                     <input type="text" id="fname" name="title" placeholder="Insert title.. ">
+                     <label for="lname">Body</label>
+                     <textarea id="Body" name="body" placeholder="Write something.." style="height:200px"></textarea>
+                     <br>
+                     <input type="submit" value="Submit">
+                  </form>
+               </div>
+            </div>';
+      }
+   }
+ echo $head;
+ echo $body;
+?>
 
 </body>
 </html>
