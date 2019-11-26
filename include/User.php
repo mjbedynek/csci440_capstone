@@ -50,7 +50,7 @@ class Login {
 	}
 
 	public function isAuthenticated() {
-		return $this->isauthenticated;
+		return $this->authenticated;
 	}
 
 	// Change the user's password
