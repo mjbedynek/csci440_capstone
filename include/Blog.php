@@ -3,13 +3,13 @@
 require_once "Database.php";
 
 class Blog {
-	// Instance variables
-	private $dbh;
+   // Instance variables
+   private $dbh;
 
-	// Constructor
-	function __construct() {
+   // Constructor
+   function __construct() {
       // Open a connection to the DB
-		$this->dbh = new Database();
+      $this->dbh = new Database();
    }
    function getMostRecentPost() {
       // No need to parameterize... no user input sent to DB
