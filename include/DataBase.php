@@ -1,5 +1,7 @@
 <?php
 
+//require_once "include/config.php";
+
 class Database {
    private $pdo;
    private $DB = array(
@@ -10,13 +12,12 @@ class Database {
    );
    private $PDO_OPTS = [
       PDO::ATTR_EMULATE_PREPARES    => false,
-      PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_ERRMODE             => PDO::ERRMODE_EXCEPTION,
       PDO::ATTR_DEFAULT_FETCH_MODE  => PDO::FETCH_ASSOC,
    ];
 
    // Setup persistent DB connection within object
    function __construct() {
-      //echo $this->DB['USER'];
       try {
          $dsn = "mysql:host=".$this->DB['HOST'].";dbname=".$this->DB[NAME];
          $this->pdo = new PDO($dsn, $this->DB['USER'], $this->DB['PASS'],
@@ -26,10 +27,11 @@ class Database {
       }
    }
 
-   // Handle queries using fetchall.  This returns an array of hashes.
-   function query($sql) {
+   // Handle queries using prepared statements to prevent SQL injects
+   function query($sql, $params) {
       try {
-         $qry = $this->pdo->query($sql);
+         $qry = $this->pdo->prepare($sql);
+         $qry->execute($params);
          $res = $qry->fetchall();
       } catch (PDOException $e) {
          die("ERROR: Could not execute query " . $e->getMessage);
@@ -47,7 +49,7 @@ class Database {
       return $res;
    }
 
-   // PHP does this anyway but lets be clean with our code
+   // PHP do not need a deconstructor but we do this any way
    function __destruct() {
       $this->pdo = null;
    }
