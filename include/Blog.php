@@ -29,6 +29,16 @@ class Blog {
       $res = $this->dbh->query($sql, null);
       return $res;
    }
+   function newPost(&$authorid, &$title, &$body) {
+      // Parameterize data
+      $params = [
+         'authorid'  => $authorid,
+         'title'     => $title,
+         'body'      => $body,
+         ];
+      $sql = "INSERT INTO posts (authorid, title, body) VALUES (:authorid, :title, :body)";
+      $this->dbh->insert($sql, $params);
+   }
 }
 
 ?>
