@@ -2,17 +2,15 @@
 
 session_start();
 
-require_once "include/DB.php";
+require_once "include/Database.php";
 require_once "include/html_includes.php";
 
-$head = '
+?>
 <html>
-   <head>
-      <meta charset = "utf-8">
-      <title>Insert Form</title>
-      <link rel="stylesheet" href="styles.css">
-      <link rel="stylesheet" href="restyle.css">
-   </head>';
+
+<?
+$html .= $head;
+
 
 // Prevent unauthorized users from making posts ;-)
 if ( isset ( $_SESSION['username'] ) ) {
@@ -25,7 +23,7 @@ if ( isset ( $_SESSION['username'] ) ) {
       case "add":
          // check to see if all the data is there
          if (!$title || !$body) {
-         $body = '<body>
+         $html .= '<body>
                   You have not entered all the required details.<br>
                   Please go back and try again.";
                   <p><a href = "insert_form.php">Go Back</a></p>';
@@ -37,30 +35,31 @@ if ( isset ( $_SESSION['username'] ) ) {
          $body = addslashes($body);
 
          // Open connection to DB
-         $db = new Database();
+         $dbh = new Database();
 
          // Get Author from PHP session data
          $authorid = isset($_SESSION[ "id" ]) ? $_SESSION [ "id" ] : "";
 
-         // Setup query
+         // Parameterize query
          $params = [
                      'authorid'  => $authorid,
                      'title'     => $title,
                      'body'      => $body,
                    ];
-         $sql = "INSERT INTO posts (authorid, body, title) VALUES (:authorid, :title, :body)";
+         $sql = "INSERT INTO posts (authorid, title, body) VALUES (:authorid, :title, :body)";
          // Insert into DB
-         $db->insert($sql, $params);
+         $dbh->insert($sql, $params);
 
          // Forward to main page?
-         $body .= '<script type = "text/javascript" > location.href = \'all_posts.php\'; </script>';
+         $html .= '<script type = "text/javascript" > location.href = \'all_posts.php\'; </script>';
 
          break;
       default:
-         $body = '
-            <header><img src = "tamuc-logo.png" alt = "TAMUC" />
-            <div class = "flexbox">'.$admin_menu.'</div></header>';
-         $body .= '
+#         $body = '
+#            <header><img src = "tamuc-logo.png" alt = "TAMUC" />
+#            <div class = "flexbox">'.$admin_menu.'</div></header>';
+         $html .= $admin_body_header;
+         $html .= '
             <div class="insert-form">
                <div class = "insert_box_wrapper">
                   <form action="insert.php?action=add" method = "post">
@@ -76,8 +75,7 @@ if ( isset ( $_SESSION['username'] ) ) {
             </div>';
       }
    }
- echo $head;
- echo $body;
+   echo $html;
 ?>
 
 </body>
