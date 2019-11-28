@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once "include/Database.php";
+require_once "include/Blog.php";
 require_once "include/html_includes.php";
 
 ?>
@@ -35,20 +35,13 @@ if ( isset ( $_SESSION['username'] ) ) {
          $body = addslashes($body);
 
          // Open connection to DB
-         $dbh = new Database();
+         $blog = new Blog();
 
          // Get Author from PHP session data
          $authorid = isset($_SESSION[ "id" ]) ? $_SESSION [ "id" ] : "";
 
-         // Parameterize query
-         $params = [
-                     'authorid'  => $authorid,
-                     'title'     => $title,
-                     'body'      => $body,
-                   ];
-         $sql = "INSERT INTO posts (authorid, title, body) VALUES (:authorid, :title, :body)";
-         // Insert into DB
-         $dbh->insert($sql, $params);
+         // Post to blog
+         $blog->newPost($authorid, $title, $body);
 
          // Forward to main page?
          $html .= '<script type = "text/javascript" > location.href = \'all_posts.php\'; </script>';
