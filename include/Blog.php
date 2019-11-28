@@ -19,6 +19,16 @@ class Blog {
       $res = $this->dbh->query($sql, null)[0];
       return $res;
    }
+
+   function getPage($page, $results_per_page) {
+      // No need to parameterize... no user input sent to DB
+      $start_from = ($page - 1) * $results_per_page;
+      $sql = 'SELECT title, body, postdatetime, displayname FROM posts
+              LEFT JOIN users ON posts.authorid = users.id
+              ORDER BY postdatetime DESC LIMIT '.$start_from.','.$results_per_page;
+      $res = $this->dbh->query($sql, null);
+      return $res;
+   }
 }
 
 ?>
