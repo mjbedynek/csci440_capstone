@@ -1,33 +1,33 @@
-<html>
-<title>Inserted Post</title>
-<body>
-
 <?php
 
-// get the data from the form and assign the data to variables
-$title = $_POST['select'];
+session_start();
 
-// add slashes and prepare the data for inserting into the db
-//$title = addslashes($title);
-
-// connect to the db
-$conn = new mysqli("localhost","id7820654_willyoung18","/*Password*/","id7820654_blog_posts");
-if (!$conn) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . $conn->connect_errno() . PHP_EOL;
-    echo "Debugging error: " . $conn->connect_error() . PHP_EOL;
-    exit;
-}
-
-
-// prepare the query
-$query = 'DELETE FROM posts WHERE Title = "' . $title. '"';
-
-// run the query
-$result = $conn->query($query);
+require_once "include/Blog.php";
+require_once "include/html_includes.php";
 
 ?>
-<script type = "text/javascript" > location.href = 'https://william-young.000webhostapp.com/blog_posts.php'; </script>
+<html>
+<?
+   // _GET returns strings... must cast as Integer for getPost method
+   $id = isset($_GET[ "id" ]) ? (int)$_GET[ "id" ] : 0;
+
+   if ( isset ( $_SESSION['username'] ) ) {
+      $blog = new Blog();
+      $blogPost = $blog->getPost($id);
+
+      // Permit the author or admin the ability to delete the post
+      if ($_SESSION["id"] == $blogPost["authorid"] || $_SESSION["isadmin"])
+         $blog->deletePost($id);
+      else
+         $html = "<p>Access denied</p>";
+   } else
+      $html = "<p>Login required</p>";
+
+   echo $html;
+?>
+
+<script type = "text/javascript" > location.href = '/all_posts.php'; </script>
+
 
 </body>
 </html>
