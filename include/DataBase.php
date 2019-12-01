@@ -39,7 +39,7 @@ class Database {
       return $res;
    }
    // Insert data into the database
-   function insert($sql, $params) {
+   function execute($sql, $params) {
       try {
          $qry = $this->pdo->prepare($sql);
          $res = $qry->execute($params);
