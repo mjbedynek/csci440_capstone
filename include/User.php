@@ -18,8 +18,9 @@ class User {
       $this->dbh = new Database();
       // Parameterize query - prevent SQL injection
       // Also use strip tags to remove html from username and password
+      $password_hash = hash('sha256', $password);
       $params = [ 'username'  => strip_tags($username),
-                  'password'  => strip_tags($password) , ];
+                  'password'  => strip_tags($password_hash) , ];
       $sql = 'SELECT id, username, isadmin FROM users WHERE '.
              'username = :username AND password = :password';
       $res = $this->dbh->query($sql, $params)[0];
