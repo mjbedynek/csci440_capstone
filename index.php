@@ -27,12 +27,15 @@ $html .= '</div></div>';
 $blog = new Blog();
 $html .= '<div class = "blog_box">
 <div><h1>Most Recent Posts</h1>';
-$row = $blog->getMostRecentPost();
+$row = $blog->getLatestPost();
 if ($row) {
    $html .= "<h1>" . $row["title"]. "</h1> ".
         "<p>". $row["body"]."</p><br>".
         "<em>By: ".$row["displayname"]."</em><br>".
         "Posted: ".$row["postdatetime"];
+   if ($_SESSION["id"] == $row["authorid"] || $_SESSION["isadmin"])
+      $html .= "<br><br><a href=edit.php?id=".$row["id"].">Edit</a>".
+               "&nbsp&nbsp&nbsp<a href=delete.php?id=".$row["id"].">Delete</a>";
 } else {
    $html .= "0 results";
 }
