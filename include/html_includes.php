@@ -14,11 +14,12 @@ $admin_body_header = '<header>
       <div><a href="all_posts.php">All Posts</a></div> -
       <div><a href="">Find Posts</a></div> -
       <div><a href="insert.php">Make Post</a></div> -
-      <div><a href="delete_form.php">Delete Posts</a></div> -
-      <div><a href="modify_form.php">Edit Posts</a></div> -
       <div><a href="admin_home.php">Admin Portal</a></div>
+      <div><a href="logoff.php">Log Off</a></div> -
    </div>
 </header>';
+#<div><a href="modify_form.php">Edit Posts</a></div> -
+#<div><a href="delete_form.php">Delete Posts</a></div> -
 
 $user_body_header = '
 <header><img src = "tamuc-logo.png" alt = "TAMUC" />
