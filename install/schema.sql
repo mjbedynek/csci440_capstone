@@ -59,3 +59,10 @@ Added comments and users tables.
 Ran this command:
 	ALTER TABLE posts MODIFY postdatetime datetime DEFAULT CURRENT_TIMESTAMP;
 	ALTER TABLE users ADD `displayname` char(30) NOT NULL AFTER id;
+
+/* changes to database on 12/1/2019 */
+Ran this command:
+	ALTER TABLE posts CHANGE COLUMN `id` `pid` int(10) unsigned NOT NULL AUTO_INCREMENT;
+	ALTER TABLE users CHANGE COLUMN `id` `uid` int(10) unsigned NOT NULL AUTO_INCREMENT;
+	ALTER TABLE comments CHANGE COLUMN `id` `cid` int(10) unsigned NOT NULL AUTO_INCREMENT;
+
