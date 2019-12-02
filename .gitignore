@@ -1,4 +1,0 @@
-#This allows git to ignore temp files.
-
-*~
-*.swp
