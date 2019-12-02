@@ -13,9 +13,11 @@ $html .= $head;
 
 
 // Prevent unauthorized users from making posts ;-)
-if ( isset ( $_SESSION['username'] ) ) {
+if ( isset ( $_SESSION['uid'] ) ) {
+   $uid = $_SESSION['uid'];
+
    // Store form data in usable variables
-   $action = isset($_POST[ "action" ]) ? $_POST [ "action" ] : "";
+   $action = isset($_GET[ "action" ]) ? $_GET [ "action" ] : "";
    $title = isset($_POST[ "title" ]) ? $_POST [ "title" ] : "";
    $body = isset($_POST[ "body" ]) ? $_POST [ "body" ] : "";
 
@@ -30,33 +32,22 @@ if ( isset ( $_SESSION['username'] ) ) {
                   exit;
          }
 
-         // add slashes and prepare the data for inserting into the db
-         $title = addslashes($title);
-         $body = addslashes($body);
-
          // Open connection to DB
          $blog = new Blog();
 
-         // Get Author from PHP session data
-         $authorid = isset($_SESSION[ "id" ]) ? $_SESSION [ "id" ] : "";
-
          // Post to blog
-         $blog->newPost($authorid, $title, $body);
+         $blog->newPost($uid, $title, $body);
 
          // Forward to main page?
          $html .= '<script type = "text/javascript" > location.href = \'all_posts.php\'; </script>';
 
          break;
       default:
-#         $body = '
-#            <header><img src = "tamuc-logo.png" alt = "TAMUC" />
-#            <div class = "flexbox">'.$admin_menu.'</div></header>';
          $html .= $admin_body_header;
          $html .= '
             <div class="insert-form">
                <div class = "insert_box_wrapper">
                   <form action="insert.php?action=add" method = "post">
-                     <input type="hidden" name="action" value="add" />
                      <label for="fname">Title</label>
                      <input type="text" id="fname" name="title" placeholder="Insert title.. ">
                      <label for="lname">Body</label>
