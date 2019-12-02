@@ -1,7 +1,7 @@
 DROP TABLE posts;
 CREATE TABLE `posts`
 (	
-	`id`		   	int(10) unsigned AUTO_INCREMENT,
+	`pid`		   	int(10) unsigned AUTO_INCREMENT,
 	`title`			char(30),
 	`body`			blob,
 	`postdatetime`		datetime DEFAULT CURRENT_TIMESTAMP,
@@ -13,7 +13,7 @@ CREATE TABLE `posts`
 
 DROP TABLE `users`;
 CREATE TABLE `users`
-(	`id`			int(10) unsigned NOT NULL AUTO_INCREMENT,
+(	`uid`			int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`username`		char(30) NOT NULL,
 	`password`		char(30) NOT NULL,
 	`displayname`		char(30) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `users`
 
 DROP TABLE `comments`;
 CREATE TABLE `comments`
-(	`id`			int(10) unsigned NOT NULL AUTO_INCREMENT,
+(	`cid`			int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`title`			char(30),
 	`commentdatetime`	datetime,
 	`body`			blob NOT NULL,
