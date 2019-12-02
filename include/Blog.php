@@ -17,9 +17,9 @@ class Blog {
       if (!is_int($postID) && $postID > 0)
          return;
       $params = [
-         'id'  => $postID,
+         'pid'  => $postID,
          ];
-      $sql = 'DELETE FROM posts WHERE id = :id';
+      $sql = 'DELETE FROM posts WHERE pid = :pid';
       $this->dbh->execute($sql, $params);
    }
    function getPost($postID) {
@@ -27,17 +27,17 @@ class Blog {
       if (!is_int($postID))
          return;
       $params = [
-         'id'  => $postID,
+         'pid'  => $postID,
          ];
-      $sql = 'SELECT posts.id, authorid, title, body, postdatetime, displayname FROM posts
-              LEFT JOIN users ON posts.authorid = users.id WHERE posts.id = :id';
+      $sql = 'SELECT pid, authorid, title, body, postdatetime, displayname FROM posts
+              LEFT JOIN users ON posts.authorid = users.uid WHERE posts.pid = :pid';
       $res = $this->dbh->query($sql, $params)[0];
       return $res;
    }
    function getLatestPost() {
       // No need to parameterize... no user input sent to DB
-      $sql = 'SELECT posts.id, authorid, title, body, postdatetime, displayname FROM posts
-              LEFT JOIN users ON posts.authorid = users.id
+      $sql = 'SELECT pid, authorid, title, body, postdatetime, displayname FROM posts
+              LEFT JOIN users ON posts.authorid = users.uid
               ORDER BY postdatetime DESC LIMIT 1';
       $res = $this->dbh->query($sql, null)[0];
       return $res;
@@ -53,8 +53,8 @@ class Blog {
          'start_from'  => $start_from,
          'results_per_page'   => $results_per_page,
          ];
-      $sql = 'SELECT posts.id, authorid, title, body, postdatetime, displayname FROM posts
-              LEFT JOIN users ON posts.authorid = users.id
+      $sql = 'SELECT posts.pid, authorid, title, body, postdatetime, displayname FROM posts
+              LEFT JOIN users ON posts.authorid = users.uid
               ORDER BY postdatetime DESC LIMIT :start_from,:results_per_page';
       $res = $this->dbh->query($sql, $params);
       return $res;
@@ -67,6 +67,16 @@ class Blog {
          'body'      => $body,
          ];
       $sql = "INSERT INTO posts (authorid, title, body) VALUES (:authorid, :title, :body)";
+      $this->dbh->execute($sql, $params);
+   }
+   function updatePost(&$pid, &$title, &$body) {
+      // Parameterize data
+      $params = [
+         'pid'       => $pid,
+         'title'     => $title,
+         'body'      => $body,
+         ];
+      $sql = "UPDATE posts SET title = :title, body = :body WHERE pid = :pid";
       $this->dbh->execute($sql, $params);
    }
 }
