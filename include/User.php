@@ -7,7 +7,7 @@ class User {
    // Instance variables
    private $dbh;
    private $authenticated;
-   private $id;
+   private $uid;
    private $username;
    private $lastlogin;
    private $isadmin;
@@ -21,14 +21,14 @@ class User {
       $password_hash = hash('sha256', $password);
       $params = [ 'username'  => strip_tags($username),
                   'password'  => strip_tags($password_hash) , ];
-      $sql = 'SELECT id, username, isadmin FROM users WHERE '.
+      $sql = 'SELECT uid, username, isadmin FROM users WHERE '.
              'username = :username AND password = :password';
       $res = $this->dbh->query($sql, $params)[0];
 
       // If we get any results then the username is valid
       if ($res) {
          // Store instance vars for obj
-         $this->id = $res['id'];
+         $this->uid = $res['uid'];
          $this->username = $res['username'];
          $this->lastlogin = $res['lastlogin'];
          // Recast string value to boolean
@@ -38,8 +38,8 @@ class User {
    }
 
    // Return id (from DB)
-   public function getID() {
-      return $this->id;
+   public function getUID() {
+      return $this->uid;
    }
 
    // Return username for object
