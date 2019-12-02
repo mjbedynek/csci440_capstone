@@ -1,10 +1,3 @@
-<?php
-
-session_start();
-
-require_once "include/Blog.php";
-require_once "include/html_includes.php";
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -48,9 +41,9 @@ if ($rows) {
                "<em>By: ".$row["displayname"]."</em><br>".
                "Posted: ".$row["postdatetime"];
       // Only the admin or the user to created the post can see edit/delete
-      if ($_SESSION["id"] == $row["authorid"] || $_SESSION["isadmin"])
-         $html .= "<br><br><a href=edit.php?id=".$row["id"].">Edit</a>".
-               "&nbsp&nbsp&nbsp<a href=delete.php?id=".$row["id"].">Delete</a>";
+      if ($_SESSION["uid"] == $row["authorid"] || $_SESSION["isadmin"])
+         $html .= "<br><br><a href=edit.php?pid=".$row["pid"].">Edit</a>".
+               "&nbsp&nbsp&nbsp<a href=delete.php?pid=".$row["pid"].">Delete</a>";
    }
 } else {
    $html .= "0 results";
