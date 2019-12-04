@@ -27,7 +27,8 @@ $html .= '</div></div>';
 $blog = new Blog();
 $html .= '<div class = "blog_box">
 <div><h1>Most Recent Posts</h1>';
-$row = $blog->getLatestPost();
+#$row = $blog->getLatestPost();
+$row = $blog->getPage(1,1)[0];
 if ($row) {
    $html .= "<h1>" . $row["title"]. "</h1> ".
         "<p>". $row["body"]."</p><br>".
