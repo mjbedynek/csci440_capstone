@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+require_once "include/Blog.php";
+require_once "include/html_includes.php";
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -8,8 +15,11 @@ if (isset($_GET["page"]))
    $pagenum = $_GET["page"];
 else
    $pagenum = 1;
+// Determine page size
 if (isset($_GET["psize"]))
    $psize = $_GET["psize"];
+else if ( isset($_SESSION['psize']))
+   $psize = $_SESSION['psize'];
 else
    $psize = 5;
 
@@ -24,9 +34,9 @@ else
 
 
 // Sidenav?  Do we keep it???
-$html .= '<div class="sidenav"><div>';
+//$html .= '<div class="sidenav"><div>';
 #  php include "sidenav.php";
-$html .= '</div></div>';
+//$html .= '</div></div>';
 
 // Blog box
 $blog = new Blog();
@@ -51,7 +61,7 @@ if ($rows) {
 $html .= '</div></div>';
 
 echo $html;
-echo $body;
+
 
 ?>
 </body>
