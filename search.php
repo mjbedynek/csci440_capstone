@@ -27,6 +27,8 @@ else
 // Page size (default is 5)
 if (isset($_GET["psize"]))
    $psize = (int)$_GET["psize"];
+else if ( isset($_SESSION['psize']))
+   $psize = (int)$_SESSION['psize'];
 else
    $psize = 5;
 
@@ -43,6 +45,7 @@ $blog = new Blog();
 // Display results for a single Post
 if ( isset($_GET[ "pid" ]) ) {
    $pid = (int) $_GET[ "pid" ];
+   //$keyword = $_GET[ "keyword" ];
    $row = $blog->getPost($pid);
    if ($row) {
       $html .= "<h1>" . $row["title"]. "</h1> ".
@@ -52,7 +55,7 @@ if ( isset($_GET[ "pid" ]) ) {
       if ($_SESSION["id"] == $row["authorid"] || $_SESSION["isadmin"])
          $html .= "<br><br><a href=edit.php?pid=".$row["pid"].">Edit</a>".
                   "&nbsp&nbsp&nbsp<a href=delete.php?pid=".$row["pid"].">Delete</a>";
-      $html .= "<br><a href=/search.php?keyword=".$keyword."&page=".$pagenum."&psize=".$psize.">Back to Search results...</a>&nbsp";
+      //$html .= "<br><a href=/search.php?keyword=".$keyword."&page=".$pagenum."&psize=".$psize.">Back to Search results...</a>&nbsp";
       } else {
          $html .= "Post may have been deleted";
       }
@@ -98,13 +101,14 @@ if ( isset($_GET[ "pid" ]) ) {
                      <label for="keyword">Search for</label>
                      <input type="text" id="keyword" name="keyword" placeholder="Insert a key word.. ">
                      <label for="psize">Results Per Page:</label>
-                     <select name="psize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                     </select>
+                     <select name="psize">';
+   foreach ($page_sizes as $v) {
+      if ($psize == $v)
+         $html .= "<option value=\"$v\" selected>$v</option>";
+      else
+         $html .= "<option value=\"$v\">$v</option>";
+   }
+   $html .='</select>
                      <!-- Hidden fields for passing data -->
                      <input type="hidden" name="page" value="'.$pagenum.'">
                      <input type="submit" value="Search">
