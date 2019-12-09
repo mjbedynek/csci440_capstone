@@ -6,6 +6,7 @@ CREATE TABLE `posts`
 	`body`			blob,
 	`postdatetime`		datetime DEFAULT CURRENT_TIMESTAMP,
 	`authorid`		int(10) unsigned NOT NULL
+	`def_page_size`		int(10) unsigned NOT NULL DEFAULT 5,
 	PRIMARY KEY		(`id`),
 	FOREIGN KEY 		(`authorid`)
 		REFERENCES users(`id`),
