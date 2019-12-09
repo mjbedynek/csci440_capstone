@@ -66,3 +66,6 @@ Ran this command:
 	ALTER TABLE users CHANGE COLUMN `id` `uid` int(10) unsigned NOT NULL AUTO_INCREMENT;
 	ALTER TABLE comments CHANGE COLUMN `id` `cid` int(10) unsigned NOT NULL AUTO_INCREMENT;
 
+/* changes to database on 12/9/2019 */
+Ran this command:
+	ALTER TABLE users ADD `def_page_size` int(10) unsigned NOT NULL DEFAULT 5 AFTER lastlogin;
