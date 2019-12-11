@@ -12,7 +12,7 @@ require_once "include/html_includes.php";
 
 // If a page is not specified, assume page 1
 if (isset($_GET["page"]))
-   $pagenum = $_GET["page"];
+   $pagenum = (int)$_GET["page"];
 else
    $pagenum = 1;
 // Determine page size
@@ -43,6 +43,7 @@ $blog = new Blog();
 $html .= '<div class = "blog_box">
 <div><h1>Most Recent Posts</h1>';
 $rows = $blog->getPage($pagenum, $psize);
+$postCount = $blog->getPostCount();
 
 if ($rows) {
    foreach ($rows as $row) {
@@ -55,6 +56,21 @@ if ($rows) {
          $html .= "<br><br><a href=edit.php?pid=".$row["pid"].">Edit</a>".
                "&nbsp&nbsp&nbsp<a href=delete.php?pid=".$row["pid"].">Delete</a>";
    }
+   if ($postCount > $psize) {
+      $num_of_pages = $postCount / $psize;
+      // If there are leftover results, add another page
+      if ($postCount % $psize)
+         $num_of_pages++;
+         $html .= "<h2>Page&nbsp:&nbsp";
+         for ($p = 1; $p <= $num_of_pages; $p++) {
+            if ($pagenum == $p)
+               $html .= "$p&nbsp;";
+            else
+               $html .= "<a href=/all_posts.php?page=".$p."&psize=".$psize.">".$p."</a>&nbsp";
+         }
+         $html .= "</h2>";
+         $html .= '</div></div>';
+      }
 } else {
    $html .= "0 results";
 }
