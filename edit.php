@@ -9,7 +9,7 @@ require_once "include/html_includes.php";
 <html>
 
 <?
-$html .= $head;
+$html .= $headedit;
 
 // Prevent unauthorized users from making posts ;-)
 if ( isset ( $_SESSION['uid'] ) ) {
@@ -60,7 +60,13 @@ if ( isset ( $_SESSION['uid'] ) ) {
                         <input type="submit" value="Submit">
                      </form>
                   </div>
-               </div>';
+               </div>
+               <script>
+                  CKEDITOR.replace(\'Body\', {
+                     filebrowserUploadUrl: \'ckul.php?cmd=upload\',
+                     filebrowserUploadMethod: \'form\'
+                  });
+               </script>';
          }
       }
    }

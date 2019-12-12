@@ -38,7 +38,7 @@ if ( isset ( $_SESSION['username'] ) ) {
       // Changing of password
       if (isset($_POST['password']) && !empty($_POST['password']) &&
          isset($_POST['password1']) && !empty($_POST['password1']) &&
-         isset($_POST['password2']) && !empty($_POST['password2'])) {
+         isset($_POST['password2']) && !empty($_POST['password2'])) { 
 
          if ($_POST['password1'] == $_POST['password2']) {
             try {
@@ -64,6 +64,7 @@ if ( isset ( $_SESSION['username'] ) ) {
       if ( isset($_POST['psize']) && !empty($_POST['psize']) ) {
          try {
             $user->setPageSize((int)$_POST['psize']);
+            $_SESSION['psize'] = (int)$_POST['psize'];
          }
          catch (Exception $e) {
             array_push($msgs, $e->getMessage());

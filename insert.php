@@ -9,7 +9,7 @@ require_once "include/html_includes.php";
 <html>
 
 <?
-$html .= $head;
+$html .= $headedit;
 
 
 // Prevent unauthorized users from making posts ;-)
@@ -28,7 +28,7 @@ if ( isset ( $_SESSION['uid'] ) ) {
          $html .= '<body>
                   You have not entered all the required details.<br>
                   Please go back and try again.";
-                  <p><a href = "insert_form.php">Go Back</a></p>';
+                  <p><a href = "insert.php">Go Back</a></p>';
                   exit;
          }
 
@@ -43,7 +43,12 @@ if ( isset ( $_SESSION['uid'] ) ) {
 
          break;
       default:
+#         $body = '
+#            <header><img src = "tamuc-logo.png" alt = "TAMUC" />
+#            <div class = "flexbox">'.$admin_menu.'</div></header>';
          $html .= $admin_body_header;
+           $function_number = $_GET['CKEditorFuncNum'];
+
          $html .= '
             <div class="insert-form">
                <div class = "insert_box_wrapper">
@@ -56,9 +61,17 @@ if ( isset ( $_SESSION['uid'] ) ) {
                      <input type="submit" value="Submit">
                   </form>
                </div>
-            </div>';
+            </div>
+            <script>
+
+                      CKEDITOR.replace(\'Body\', {
+                              filebrowserUploadUrl: \'ckul.php?cmd=upload\',
+                                      filebrowserUploadMethod: \'form\'
+                                          });
+            </script>';
       }
    }
+                     #window.parent.CKEDITOR.tools.callFunction($function_number, $url, $message);
    echo $html;
 ?>
 

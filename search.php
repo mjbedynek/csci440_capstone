@@ -23,7 +23,7 @@ if (isset($_GET["page"]))
    $pagenum = (int)$_GET["page"];
 else
    $pagenum = 1;
-
+   
 // Page size (default is 5)
 if (isset($_GET["psize"]))
    $psize = (int)$_GET["psize"];
@@ -37,13 +37,12 @@ else
 #  php include "sidenav.php";
 //$html .= '</div></div>';
 
-$html .= '<div class = "blog_box"><div>';
-
 // Instatiate new blog object
 $blog = new Blog();
 
 // Display results for a single Post
 if ( isset($_GET[ "pid" ]) ) {
+   $html .= '<div class = "blog_box"><div>';
    $pid = (int) $_GET[ "pid" ];
    //$keyword = $_GET[ "keyword" ];
    $row = $blog->getPost($pid);
@@ -56,11 +55,14 @@ if ( isset($_GET[ "pid" ]) ) {
          $html .= "<br><br><a href=edit.php?pid=".$row["pid"].">Edit</a>".
                   "&nbsp&nbsp&nbsp<a href=delete.php?pid=".$row["pid"].">Delete</a>";
       //$html .= "<br><a href=/search.php?keyword=".$keyword."&page=".$pagenum."&psize=".$psize.">Back to Search results...</a>&nbsp";
+      $html .= '</div></div>';
       } else {
          $html .= "Post may have been deleted";
+         $html .= '</div></div>';
       }
 // Search for results
 } else if ( isset($_GET[ "keyword" ]) ) {
+   $html .= '<div class = "blog_box"><div>';
    $keyword = $_GET[ "keyword" ];
 
    // Get the search results
@@ -88,10 +90,12 @@ if ( isset($_GET[ "pid" ]) ) {
                $html .= "<a href=/search.php?keyword=".$keyword."&page=".$p."&psize=".$psize.">".$p."</a>&nbsp";
          }
          $html .= "</h2>";
+         $html .= '</div></div>';
       }
    // If no results,let the user know this
    } else {
       $html .= "0 results";
+      $html .= '</div></div>';
    }
 // Display search form
 } else {
@@ -117,7 +121,7 @@ if ( isset($_GET[ "pid" ]) ) {
             </div>';
 }
 
-$html .= '</div></div>';
+
 echo $html;
 ?>
 

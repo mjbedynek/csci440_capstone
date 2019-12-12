@@ -19,9 +19,9 @@ else
    $html .= $user_body_header;
 
 // Sidenav?  Do we keep it???
-$html .= '<div class="sidenav"><div>';
+//$html .= '<div class="sidenav"><div>';
 #	php include "sidenav.php";
-$html .= '</div></div>';
+//$html .= '</div></div>';
 
 // Blog box
 $blog = new Blog();
@@ -35,8 +35,8 @@ if ($row) {
         "<em>By: ".$row["displayname"]."</em><br>".
         "Posted: ".$row["postdatetime"];
    if ($_SESSION["id"] == $row["authorid"] || $_SESSION["isadmin"])
-      $html .= "<br><br><a href=edit.php?id=".$row["id"].">Edit</a>".
-               "&nbsp&nbsp&nbsp<a href=delete.php?id=".$row["id"].">Delete</a>";
+      $html .= "<br><br><a href=edit.php?pid=".$row["pid"].">Edit</a>".
+               "&nbsp&nbsp&nbsp<a href=delete.php?pid=".$row["pid"].">Delete</a>";
 } else {
    $html .= "0 results";
 }
@@ -49,3 +49,4 @@ echo $body;
 ?>
 </body>
 </html>
+

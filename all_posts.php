@@ -12,12 +12,12 @@ require_once "include/html_includes.php";
 
 // If a page is not specified, assume page 1
 if (isset($_GET["page"]))
-   $pagenum = (int)$_GET["page"];
+   $pagenum = (int)$_GET["page"]; 
 else
    $pagenum = 1;
 // Determine page size
 if (isset($_GET["psize"]))
-   $psize = $_GET["psize"];
+   $psize = $_GET["psize"]; 
 else if ( isset($_SESSION['psize']))
    $psize = $_SESSION['psize'];
 else

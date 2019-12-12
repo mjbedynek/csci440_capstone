@@ -27,6 +27,7 @@ if ( isset( $_POST['uname'] ) && isset( $_POST['psw'] ) ) {
       $user->login($_POST['psw']);
       $_SESSION['uid'] = $user->getUID();
       $_SESSION['username'] = $_POST['uname'];
+      $_SESSION['psize'] = $user->getPageSize();
       if ($user->isAdmin())
          $_SESSION['isadmin'] = true;
       $html .= "<script type = 'text/javascript' > location.href = 'all_posts.php'; </script>";
