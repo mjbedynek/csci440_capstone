@@ -1,33 +1,43 @@
 <?php
 
+$page_sizes = [ 5, 10, 25, 50, 100 ];
+
 $head = '<head>
    <meta charset = "utf-8">
-   <title>Insert Form</title>
-   <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="restyle.css">
+   <title>Blog Site</title>
+   <link rel="stylesheet" href="/css/styles.css">
+   <link rel="stylesheet" href="/css/restyle.css">
+</head>';
+
+$headedit = '<head>
+   <meta charset = "utf-8">
+   <title>Blog Site</title>
+   <link rel="stylesheet" href="/css/styles.css">
+   <link rel="stylesheet" href="/css/restyle.css">
+   <script src="/ckeditor/ckeditor.js"></script>
 </head>';
 
 $admin_body_header = '<header>
-   <img src = "tamuc-logo.png" alt = "TAMUC" />
+   <img src = "/image/tamuc-logo.png" alt = "TAMUC" />
    <div class = "flexbox">
-      <div><a href="/">Home</a></div> -
-      <div><a href="all_posts.php">All Posts</a></div> -
-      <div><a href="">Find Posts</a></div> -
-      <div><a href="insert.php">Make Post</a></div> -
-      <div><a href="admin_home.php">Admin Portal</a></div>
-      <div><a href="logoff.php">Log Off</a></div> -
+      <div><a href="/">Home</a></div> - 
+      <div><a href="all_posts.php">All Posts</a></div> - 
+      <div><a href="search.php">Find Posts</a></div> - 
+      <div><a href="insert.php">Make Post</a></div> - 
+      <div><a href="prefs.php">Preferences</a></div> - 
+      <div><a href="logoff.php">Log Off</a></div> - 
    </div>
 </header>';
-#<div><a href="modify_form.php">Edit Posts</a></div> -
-#<div><a href="delete_form.php">Delete Posts</a></div> -
-
+#<div><a href="modify_form.php">Edit Posts</a></div> - 
+#<div><a href="delete_form.php">Delete Posts</a></div> - 
+ 
 $user_body_header = '
-<header><img src = "tamuc-logo.png" alt = "TAMUC" />
+<header><img src = "/image/tamuc-logo.png" alt = "TAMUC" />
 <div class = "flexbox">
 <div><a href="http://no-carrier.org/">Home</a></div> -
    <div><a href="http://no-carrier.org/all_posts.php">All Posts</a></div> -
-   <div><a href="">Find Posts</a></div> -
-   <div><a href="http://no-carrier.org/about.php">About</a></div> -
+   <div><a href="http://no-carrier.org/search.php">Find Posts</a></div> -
+  
    <div>
    <a onclick="document.getElementById(\'id01\').style.display=\'block\'" style="width:auto;">Login</a>
 
@@ -67,4 +77,5 @@ window.onclick = function(event) {
 </header>';
 
 
-?>
+?> 
+

@@ -38,7 +38,7 @@ class User {
          throw new Exception('Invalid user name');
       }
    }
-
+   
    public function getEmailAddress() {
       return $this->emailAddress;
    }
@@ -98,7 +98,7 @@ class User {
    }
 
    public function setPageSize($size) {
-      if ($size < 0 || $size > 100)
+      if ($size < 0 || $size > 100) 
          throw new Exception('Invalid page size');
       $params = [ 'uid'           => $this->uid,
                   'def_page_size' => $size,

@@ -30,7 +30,6 @@ class Blog {
       $res = $this->dbh->query($sql, null)[0];
       return $res;
    }
-
    function getPage($page, $results_per_page) {
       // Ensure $page and $results_per_page are Integers
       if (!is_int($page) && !is_int($results_per_page))
@@ -62,8 +61,8 @@ class Blog {
    function getPostCount() {
       $count = 0;
       $searchTerm = "";
-      if (func_num_args() > 0)
-         $searchTerm = func_get_arg(0);
+      if (func_num_args() > 0) 
+         $searchTerm = func_get_arg(0); 
       if ($searchTerm) {
          $params = [
             'search'    => '%'.$searchTerm.'%',
